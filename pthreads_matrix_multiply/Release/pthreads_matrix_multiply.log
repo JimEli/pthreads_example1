@@ -1,0 +1,6 @@
+﻿  main.c
+  Generating code
+  All 7 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  pthreads_matrix_multiply.vcxproj -> C:\Users\Jim\Documents\Visual Studio 2017\Projects\CIS265\pthreads_matrix_multiply\Release\pthreads_matrix_multiply.exe
+  pthreads_matrix_multiply.vcxproj -> C:\Users\Jim\Documents\Visual Studio 2017\Projects\CIS265\pthreads_matrix_multiply\Release\pthreads_matrix_multiply.pdb (Full PDB)
