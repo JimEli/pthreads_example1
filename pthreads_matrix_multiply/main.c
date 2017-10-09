@@ -5,8 +5,8 @@ Download: http://cs.du.edu/~mitchell/pthreads_compiled.zip
 add: pthread.h, sched.h & semaphore.h to "C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt"
 add: pthreadVC2.lib to "C:\Program Files (x86)\Windows Kits\10\Lib\10.0.15063.0\ucrt\x86"
 add: pthreadVC2.dll to "C:\Windows"
-add: #define _TIMESPEC_DEFINED // Precludes redefining timespec struct located in time.h
 add: pthreadVC2.lib to the Project Properties > Configuration Properties > Linker > Input > Additional Dependencies
+add: #define _TIMESPEC_DEFINED
 */
 #define _TIMESPEC_DEFINED // Precludes redefining timespec struct located in time.h
 
