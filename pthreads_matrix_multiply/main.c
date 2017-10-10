@@ -18,12 +18,13 @@ add: #define _TIMESPEC_DEFINED
 
 #define SIZE 3   // Size by SIZE matrices
 
-int numThreads;  // number of threads
+int numThreads;  // Number of threads.
 int A[SIZE][SIZE], B[SIZE][SIZE], C[SIZE][SIZE];
 
 // Initialize matrix with incemental values.
 void initMatrix(int m[SIZE][SIZE], const int zero) {
 	int i, j, val = 0;
+	
 	for (i = 0; i < SIZE; i++)
 		for (j = 0; j < SIZE; j++)
 			m[i][j] = (zero) ? 0 : val++;
@@ -60,8 +61,7 @@ void* multiply(void *slice) {
 }
 
 int main(int argc, char* argv[]) {
-	pthread_t* thread;  // pointer to a group of threads
-	int i;
+	pthread_t* thread;  // Pointer to a group of threads.
 
 	if (argc != 2) {
 		printf("Usage: %s number_of_threads\n", argv[0]);
@@ -76,7 +76,7 @@ int main(int argc, char* argv[]) {
 	thread = (pthread_t*)malloc(numThreads * sizeof(pthread_t));
 
 	// This for loop not entered if thread number is specified as 1.
-	for (i = 1; i < numThreads; i++) {
+	for (int i = 1; i < numThreads; i++) {
 		// Creates each thread working on its own slice of i
 		if (pthread_create(&thread[i], NULL, multiply, (void*)i) != 0) {
 			perror("Can't create thread");
@@ -90,7 +90,7 @@ int main(int argc, char* argv[]) {
 	multiply(0);
 
 	// Main thread waits for other thread(s) to complete.
-	for (i = 1; i < numThreads; i++)
+	for (int i = 1; i < numThreads; i++)
 		pthread_join(thread[i], NULL);
 
 	printf("\n\n");
