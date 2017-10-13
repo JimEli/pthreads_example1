@@ -2,6 +2,7 @@
 Instructions for implementing pthreads on MS Visual Studio 2017:
 
 Download: http://cs.du.edu/~mitchell/pthreads_compiled.zip
+unzip archive.
 add: pthread.h, sched.h & semaphore.h to "C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt"
 add: pthreadVC2.lib to "C:\Program Files (x86)\Windows Kits\10\Lib\10.0.15063.0\ucrt\x86"
 add: pthreadVC2.dll to "C:\Windows"
@@ -16,12 +17,12 @@ add: #define _TIMESPEC_DEFINED
 #include <stdio.h>
 #include <stdbool.h>
 
-#define SIZE 3   // Size by SIZE matrices
+#define SIZE 3   // Size by SIZE matrices.
 
 int numThreads;  // Number of threads.
 int A[SIZE][SIZE], B[SIZE][SIZE], C[SIZE][SIZE];
 
-// Initialize matrix with incemental values.
+// Initialize matrix with incremental values.
 void initMatrix(int m[SIZE][SIZE], const int zero) {
 	int i, j, val = 0;
 	
@@ -30,7 +31,7 @@ void initMatrix(int m[SIZE][SIZE], const int zero) {
 			m[i][j] = (zero) ? 0 : val++;
 }
 
-// Pretty print matrix.
+// Print matrix.
 void printMatrix(const int m[SIZE][SIZE]) {
 	int i, j;
 
@@ -44,8 +45,8 @@ void printMatrix(const int m[SIZE][SIZE]) {
 
 // Thread function: takes "slice" as its argument.
 void* multiply(void *slice) {
-	int s = (int)slice;                     // Retrive the slice info.
-	int from = (s * SIZE) / numThreads;     // Note: 'slicing' works fine, even if SIZE not divisible by num_thrd.
+	int s = (int)slice;                     // Retrieve slice info.
+	int from = (s * SIZE) / numThreads;     // Note: 'slicing' works fine, even if SIZE not divisible by numThread.
 	int to = ((s + 1) * SIZE) / numThreads;
 	int i, j, k;
 
@@ -77,7 +78,7 @@ int main(int argc, char* argv[]) {
 
 	// This for loop not entered if thread number is specified as 1.
 	for (int i = 1; i < numThreads; i++) {
-		// Creates each thread working on its own slice of i
+		// Creates each thread working on its own slice of i.
 		if (pthread_create(&thread[i], NULL, multiply, (void*)i) != 0) {
 			perror("Can't create thread");
 			free(thread);
@@ -93,6 +94,7 @@ int main(int argc, char* argv[]) {
 	for (int i = 1; i < numThreads; i++)
 		pthread_join(thread[i], NULL);
 
+	// Display results.
 	printf("\n\n");
 	printMatrix(A);
 	printf("\n\n\t * \n");
@@ -104,4 +106,3 @@ int main(int argc, char* argv[]) {
 	free(thread);
 	return 0;
 }
-
