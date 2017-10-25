@@ -17,7 +17,7 @@ add: #define _TIMESPEC_DEFINED
 #include <stdio.h>
 #include <stdbool.h>
 
-#define SIZE 3   // Size by SIZE matrices.
+#define SIZE 3   // SIZE by SIZE matrices.
 
 int numThreads;  // Number of threads.
 int A[SIZE][SIZE], B[SIZE][SIZE], C[SIZE][SIZE];
